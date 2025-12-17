@@ -1,1 +1,923 @@
-# portfolio.github.io
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mahjabeen - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #ddd;
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Minimal Navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            padding: 10px 20px;
+            background-color: rgba(241, 241, 241, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navdiv {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #logo {
+            color: royalblue;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav {
+            list-style-type: none;
+            display: flex;
+            font-size: 16px;
+            gap: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .nav li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .nav li a:hover {
+            color: royalblue;
+            background-color: rgba(65, 105, 225, 0.1);
+        }
+
+        #btn {
+            border-radius: 20px;
+            border: 2px solid royalblue;
+            padding: 8px 20px;
+            background-color: transparent;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            color: royalblue;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        #btn:hover {
+            background-color: royalblue;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile Menu Button */
+        #mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: royalblue;
+            cursor: pointer;
+            padding: 5px;
+            z-index: 101;
+            transition: transform 0.3s;
+        }
+
+        #mobile-menu-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Hero Section */
+        #home {
+            height: 400px;
+            background: linear-gradient(190deg, royalblue, rgb(124, 124, 185));
+            text-align: center;
+            padding-top: 120px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            margin: 10px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #home h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        #home p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #fff;
+            color: #3498db;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .btn:hover {
+            background: #f1f1f1;
+            transform: translateY(-3px);
+        }
+
+        /* Side-by-Side About Section */
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: #3498db;
+            bottom: 0;
+            left: 25%;
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 50px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text {
+            background-color: rgb(241, 241, 241);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 5px 5px 8px rgba(128, 128, 128, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .about-text:hover {
+            transform: translateY(-2px);
+        }
+
+        .about-text h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .about-text h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: royalblue;
+        }
+
+        .about-text p {
+            color: rgb(53, 52, 52);
+            line-height: 1.6;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .about-text span {
+            color: royalblue;
+            font-weight: bold;
+        }
+
+        .about-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        #hire-btn, #projects-btn {
+            border-radius: 8px;
+            padding: 12px 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-weight: 500;
+        }
+
+        #hire-btn {
+            background-color: royalblue;
+            color: white;
+        }
+
+        #projects-btn {
+            border: solid 2px royalblue;
+            background-color: rgb(241, 241, 241);
+            color: royalblue;
+        }
+
+        #hire-btn:hover, #projects-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image {
+            flex: 0 0 350px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 350px;
+            border: 3px solid royalblue;
+            border-radius: 10px;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .profile-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Expertise Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin-bottom: 70px;
+        }
+
+        .expertise-item {
+            background-color: rgb(241, 241, 241);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-height: 150px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .expertise-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background-color: white;
+        }
+
+        .expertise-item i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: royalblue;
+        }
+
+        .expertise-item span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Projects Section */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 40px auto;
+            max-width: 1200px;
+            padding: 0 20px;
+        }
+
+        .project {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .project video {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid royalblue;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+            font-size: 22px;
+        }
+
+        .project-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background-color: rgb(241, 241, 241);
+            border-radius: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: royalblue;
+            width: 90%;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            box-shadow: 5px 5px 8px rgba(128, 128, 128, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .contact-info:hover {
+            transform: translateY(-2px);
+        }
+
+        .contact-info h1 {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            padding-bottom: 10px;
+        }
+
+        .detail-group {
+            color: rgb(53, 53, 53);
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .detail-group div {
+            margin-bottom: 15px;
+        }
+
+        .detail-group b {
+            color: #333;
+            display: inline-block;
+            width: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: rgb(241, 241, 241);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .social-links {
+            margin-bottom: 15px;
+        }
+
+        .social-links a {
+            color: royalblue;
+            border: 2px solid royalblue;
+            border-radius: 50%;
+            padding: 10px;
+            margin: 0 8px;
+            display: inline-block;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            line-height: 20px;
+        }
+
+        .social-links a:hover {
+            background-color: royalblue;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: royalblue;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 16px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .about-image {
+                flex: 0 0 auto;
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .profile-img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 8px 15px;
+            }
+            
+            .navdiv {
+                flex-wrap: wrap;
+            }
+            
+            /* Mobile Menu Styling */
+            #mobile-menu-btn {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 10px;
+            }
+            
+            .nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                gap: 0;
+                padding: 80px 20px 20px;
+                transition: right 0.4s ease-in-out;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+                z-index: 99;
+                border-radius: 0;
+            }
+            
+            .nav.active {
+                right: 0;
+            }
+            
+            .nav li {
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .nav li a {
+                display: block;
+                padding: 15px;
+                border-radius: 8px;
+                font-size: 18px;
+                transition: all 0.3s;
+            }
+            
+            .nav li a:hover {
+                background-color: rgba(65, 105, 225, 0.1);
+                transform: translateX(5px);
+            }
+            
+            .nav li a.active {
+                background-color: royalblue;
+                color: white;
+            }
+            
+            #btn {
+                display: block;
+                width: 100%;
+                margin-top: 20px;
+                position: relative;
+                z-index: 100;
+            }
+            
+            /* Mobile Overlay */
+            .nav-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 98;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s;
+            }
+            
+            .nav-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            #home {
+                padding-top: 80px;
+                height: 350px;
+            }
+            
+            #home h1 {
+                font-size: 28px;
+            }
+            
+            #home p {
+                font-size: 16px;
+                padding: 0 15px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .about-text {
+                padding: 20px;
+            }
+            
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .expertise-item {
+                padding: 20px 10px;
+                min-height: 120px;
+            }
+            
+            .expertise-item i {
+                font-size: 30px;
+            }
+            
+            .contact-details {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            #home h1 {
+                font-size: 24px;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .about-text h1 {
+                font-size: 24px;
+            }
+            
+            .about-text h2 {
+                font-size: 20px;
+            }
+            
+            .about-buttons {
+                justify-content: center;
+            }
+            
+            .contact-info h1 {
+                font-size: 24px;
+            }
+            
+            .social-links a {
+                margin: 0 5px;
+                padding: 8px;
+                width: 36px;
+                height: 36px;
+                line-height: 18px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Active nav link */
+        .nav li a.active {
+            color: royalblue;
+            background-color: rgba(65, 105, 225, 0.1);
+            font-weight: bold;
+        }
+        
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mobile Overlay -->
+    <div class="nav-overlay"></div>
+    
+    <!-- Minimal Navbar -->
+    <header class="navbar">
+        <div class="navdiv">
+            <div id="logo">
+                <h2>Mahjabeen.</h2>
+            </div>
+            
+            <button id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experties">Experties</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <a href="#contact"><button id="btn">Let's Talk</button></a>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section id="home">
+        <div>
+            <h1>Hi, I'm Mahjabeen</h1>
+            <p>A passionate web developer creating beautiful and functional websites</p>
+            <a href="#projects" class="btn">View My Work</a>
+        </div>
+    </section>
+
+    <!-- Side-by-Side About Section -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h1>Hi, I'm <span>Mahjabeen</span></h1>
+                    <h2>Website Developer</h2>
+                    <p>Passionate about crafting beautiful, functional, and user-friendly websites. With expertise in <span>HTML and CSS</span>, I specialize in creating engaging web experiences that meet modern standards and user needs. Whether it's building portfolios, e-commerce sites, or interactive applications, I focus on clean code, intuitive interfaces, and seamless functionality to bring ideas to life online.</p>
+                    <div class="about-buttons">
+                        <button id="hire-btn">Hire Me</button>
+                        <a href="#projects"><button id="projects-btn">See Projects</button></a>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+    </section>
+    
+    <!-- Expertise Section -->
+    <section id="experties">
+        <div class="section-title">
+            <h2>My Expertise</h2>
+        </div>
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <i class="fab fa-html5"></i>
+                <span>HTML5</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fab fa-css3-alt"></i>
+                <span>CSS3</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Performance</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-code"></i>
+                <span>Clean Code</span>
+            </div>
+            <div class="expertise-item">
+                <i class="fas fa-mobile-alt"></i>
+                <span>Responsive Design</span>
+            </div>
+           
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>My Projects</h2>
+        </div>
+        <div class="projects-container">
+            <div class="project">
+                <video src="Parfumerie De Reve (1).mp4" controls></video>
+                <div class="project-info">
+                    <h3>E-commerce Website</h3>
+                    <p>A fully responsive online store with shopping cart functionality.</p>
+                </div>
+            </div>
+            <div class="project">
+                <video src="Document (2).mp4" controls></video>
+                <div class="project-info">
+                    <h3>Flower Bouquet Website</h3>
+                    <p>Design a bouquet of your choice with interactive selection features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-info">
+            <h1>Personal Information</h1>
+            <div class="contact-details">
+                <div class="detail-group">
+                    <div><b>Name:</b> Mahjabeen Awan</div>
+                    <div><b>Experience:</b> Fresh</div>
+                    <div><b>Email:</b> awananna105@gmail.com</div>
+                </div>
+                <div class="detail-group">
+                    <div><b>Role:</b> Front-End Developer</div>
+                    <div><b>Education:</b> Intermediate</div>
+                    <div><b>Location:</b> Pakistan</div>
+                </div>
+                <div class="detail-group">
+                    <div><b>IT Park:</b> Saylani SMIT Sukkur</div>
+                    <div><b>Availability:</b> Available for projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <section class="footer">
+        <footer>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="copyright">
+                © 2023 Mahjabeen. All Rights Reserved
+            </div>
+        </footer>
+    </section>
+    
+    <script>
+        // Mobile Menu Functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const nav = document.querySelector('.nav');
+        const overlay = document.querySelector('.nav-overlay');
+        const body = document.body;
+        
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            nav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            // Change hamburger icon to X when menu is open
+            const icon = mobileMenuBtn.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+        
+        // Event listeners for mobile menu
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        overlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Hire Me button functionality
+        document.getElementById('hire-btn').addEventListener('click', function() {
+            window.location.href = "#contact";
+        });
+        
+        // Active nav link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav a');
+        
+        window.addEventListener('scroll', function() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+        
+        // Close mobile menu on window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                nav.classList.remove('active');
+                overlay.classList.remove('active');
+                body.classList.remove('menu-open');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && nav.classList.contains('active')) {
+                toggleMobileMenu();
+            }
+        });
+    </script>
+</body>
+</html>
